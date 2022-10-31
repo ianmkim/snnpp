@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/CMakeFiles/doctest-populate"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/CMakeFiles/doctest-populate.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/CMakeFiles/doctest-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-build.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-download.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-install.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-test.rule"
+		},
+		{
+			"file" : "/Users/parvus/dev/snn/build/_deps/doctest-subbuild/doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"doctest-populate"
+		],
+		"name" : "doctest-populate"
+	}
+}
