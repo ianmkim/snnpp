@@ -6,6 +6,6 @@
 
 using namespace std;
 
-vector<vector<float>> produce_receptive_field(cv::Mat inp);
+vector<vector<float>> produce_receptive_field(cv::Mat &inp);
 
 #endif

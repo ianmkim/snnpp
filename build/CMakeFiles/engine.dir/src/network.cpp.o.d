@@ -545,6 +545,7 @@ CMakeFiles/engine.dir/src/network.cpp.o: \
   /Users/parvus/dev/snn/include/spike_train.hpp \
   /Users/parvus/dev/snn/include/learning.hpp \
   /Users/parvus/dev/snn/include/utils.hpp \
+  /Users/parvus/dev/snn/include/sse2neon.h \
   /Users/parvus/dev/snn/include/threshold.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/numeric \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/format \

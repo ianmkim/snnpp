@@ -1,5 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
+    
+#include "sse2neon.h"
 
 #include <vector>
 #include <opencv2/opencv.hpp>
@@ -8,7 +10,9 @@ bool sameFloat(float x, float y, float epsilon=0.001);
 
 float genRandom(float low=0.0, float high=1.0);
 
-cv::Mat toCVMat(const std::vector<std::vector<float>> vecIn, const float multiple);
+cv::Mat toCVMat(const std::vector<std::vector<float>> &vecIn, const float multiple);
+
+float dot_sse(std::vector<float> &v1, std::vector<float> &v2);
 
 
 /*
@@ -42,6 +46,7 @@ template<typename T> T interpolate( std::vector<T> &xData, std::vector<T> &yData
     // linear interpolation
     return yL + dydx * ( x - xL );                                              
 }
+
 
 template <typename T>
 T dot(std::vector<T> &v1, std::vector<T> &v2){

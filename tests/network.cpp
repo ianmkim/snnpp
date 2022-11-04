@@ -6,5 +6,5 @@
 
 
 TEST_CASE("Run training"){
-    perform_learning();
+    //perform_learning();
 }

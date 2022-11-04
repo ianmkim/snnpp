@@ -419,6 +419,8 @@ tests/CMakeFiles/unit_tests.dir/learning.cpp.o: \
   /Users/parvus/dev/snn/include/learning.hpp \
   /Users/parvus/dev/snn/include/params.hpp \
   /Users/parvus/dev/snn/include/utils.hpp \
+  /Users/parvus/dev/snn/include/sse2neon.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__split_buffer \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/opencv.hpp \
@@ -428,7 +430,6 @@ tests/CMakeFiles/unit_tests.dir/learning.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/version.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/hal/interface.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/array \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/base.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cvstd.hpp \

@@ -19,7 +19,7 @@
 using namespace cv;
 using namespace std;
 
-void reconstruct_weights(vector<float> weights, int num){
+void reconstruct_weights(vector<float> &weights, int num){
     Mat image(Params::pixel_x, Params::pixel_x, CV_8UC1);
     vector<float> r1 = {Params::w_min, Params::w_max};
     vector<float> r2 = {0.0, 255.0};

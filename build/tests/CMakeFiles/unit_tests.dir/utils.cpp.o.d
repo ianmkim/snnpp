@@ -418,7 +418,14 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__split_buffer \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/random \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/cmath \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/math.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/math.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/numeric \
   /Users/parvus/dev/snn/include/utils.hpp \
+  /Users/parvus/dev/snn/include/sse2neon.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/opencv.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/opencv_modules.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core.hpp \
@@ -426,13 +433,9 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/version.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/hal/interface.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/array \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/base.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cvstd.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/cmath \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/math.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/math.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/neon_utils.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/vsx_utils.hpp \

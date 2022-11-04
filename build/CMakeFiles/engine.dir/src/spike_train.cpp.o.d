@@ -541,4 +541,5 @@ CMakeFiles/engine.dir/src/spike_train.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/video/background_segm.hpp \
   /Users/parvus/dev/snn/include/spike_train.hpp \
   /Users/parvus/dev/snn/include/params.hpp \
-  /Users/parvus/dev/snn/include/utils.hpp
+  /Users/parvus/dev/snn/include/utils.hpp \
+  /Users/parvus/dev/snn/include/sse2neon.h

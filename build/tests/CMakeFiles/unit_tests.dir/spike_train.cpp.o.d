@@ -548,4 +548,5 @@ tests/CMakeFiles/unit_tests.dir/spike_train.cpp.o: \
   /Users/parvus/dev/snn/include/spike_train.hpp \
   /Users/parvus/dev/snn/include/params.hpp \
   /Users/parvus/dev/snn/include/receptive_field.hpp \
-  /Users/parvus/dev/snn/include/utils.hpp
+  /Users/parvus/dev/snn/include/utils.hpp \
+  /Users/parvus/dev/snn/include/sse2neon.h

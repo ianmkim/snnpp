@@ -421,6 +421,8 @@ tests/CMakeFiles/unit_tests.dir/learning.cpp.o: ../tests/learning.cpp \
   ../include/learning.hpp \
   ../include/params.hpp \
   ../include/utils.hpp \
+  ../include/sse2neon.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__split_buffer \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/opencv.hpp \
@@ -430,7 +432,6 @@ tests/CMakeFiles/unit_tests.dir/learning.cpp.o: ../tests/learning.cpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/version.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/hal/interface.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/array \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/base.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cvstd.hpp \
@@ -2387,7 +2388,8 @@ tests/CMakeFiles/unit_tests.dir/receptive_field.cpp.o: ../tests/receptive_field.
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/video/tracking.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/video/background_segm.hpp \
   ../include/receptive_field.hpp \
-  ../include/utils.hpp
+  ../include/utils.hpp \
+  ../include/sse2neon.h
 
 tests/CMakeFiles/unit_tests.dir/spike_train.cpp.o: ../tests/spike_train.cpp \
   _deps/doctest-src/doctest/doctest.h \
@@ -2938,7 +2940,8 @@ tests/CMakeFiles/unit_tests.dir/spike_train.cpp.o: ../tests/spike_train.cpp \
   ../include/spike_train.hpp \
   ../include/params.hpp \
   ../include/receptive_field.hpp \
-  ../include/utils.hpp
+  ../include/utils.hpp \
+  ../include/sse2neon.h
 
 tests/CMakeFiles/unit_tests.dir/utils.cpp.o: ../tests/utils.cpp \
   _deps/doctest-src/doctest/doctest.h \
@@ -3359,7 +3362,14 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: ../tests/utils.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__split_buffer \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/random \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/cmath \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/math.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/math.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/numeric \
   ../include/utils.hpp \
+  ../include/sse2neon.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/opencv.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/opencv_modules.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core.hpp \
@@ -3367,13 +3377,9 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: ../tests/utils.cpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/version.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/hal/interface.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include/arm_neon.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/array \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/base.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cvstd.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/cmath \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/math.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/math.h \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/neon_utils.hpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/core/vsx_utils.hpp \
@@ -3486,6 +3492,8 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: ../tests/utils.cpp \
   /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/video/background_segm.hpp
 
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/numeric:
+
 ../tests/utils.cpp:
 
 ../include/receptive_field.hpp:
@@ -3551,6 +3559,8 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: ../tests/utils.cpp \
 /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/flann/timer.h:
 
 /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/flann/index_testing.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/random:
 
 /opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4/opencv2/flann/autotuned_index.h:
 
@@ -3761,6 +3771,8 @@ tests/CMakeFiles/unit_tests.dir/utils.cpp.o: ../tests/utils.cpp \
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/iosfwd:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__locale:
+
+../include/sse2neon.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/ios:
 
