@@ -13,7 +13,7 @@ namespace Params{
     // number of neurons in the first layer
     const int num_neurons_1 = pixel_x * pixel_x;
     // number of neurons in the second layer
-    const int num_neurons_2 = 3;
+    const int num_neurons_2 = 30;
 
     // minimum potential
     const float p_min = -500 * scale;
@@ -29,7 +29,7 @@ namespace Params{
     const float tau_plus = 8;
     const float tau_minus = 5;
 
-    const int epoch = 12;
+    const int epoch = 5;
 
     const int fr_bits = 12;
     const int int_bits = 12;

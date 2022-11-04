@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 float scale(float inp, 
         float min_potential, 
         float max_potential, 

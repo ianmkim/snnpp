@@ -6,7 +6,7 @@ CXX_DEFINES = -DDOCTEST_CONFIG_IMPLEMENT_WITH_MAIN -DENABLE_DOCTEST_IN_LIBRARY
 
 CXX_INCLUDES = -I/opt/homebrew/Cellar/opencv/4.6.0_1/include/opencv4 -I/Users/parvus/dev/snn/build/_deps/doctest-src
 
-CXX_FLAGSarm64 = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++11
+CXX_FLAGSarm64 =  -Wno-deprecated-anon-enum-enum-conversion -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++11
 
-CXX_FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++11
+CXX_FLAGS =  -Wno-deprecated-anon-enum-enum-conversion -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++11
 

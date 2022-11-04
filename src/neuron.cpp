@@ -12,8 +12,10 @@ bool Neuron::check(){
     if(this->p >= this->p_threshold){
         this->p = Params::p_rest;
         return true;
-    } else if (this->p < this->p_threshold)
+    } else if (this->p < Params::p_min){
         this->p = Params::p_rest;
+        return false;
+    }
     return false;
 }
 

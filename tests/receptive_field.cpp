@@ -11,7 +11,7 @@ using namespace cv;
 TEST_CASE("Receptive field convolution"){
     Mat image = imread(
         "mnist_set/0/img_1.jpg",
-        0);
+        IMREAD_GRAYSCALE);
 
     CHECK(image.empty() == false);
 
@@ -34,6 +34,11 @@ TEST_CASE("Receptive field convolution"){
     std::cout << min << std::endl;
     std::cout << max << std::endl;
 
+    Mat img = toCVMat(pot, (float)255.0);
+    imwrite("test_results/pot_1.jpg", img);
+
     CHECK(sameFloat(min, -1.1122549019));
     CHECK(sameFloat(max, 3.02107843137));
+
+    
 }

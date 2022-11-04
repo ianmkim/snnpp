@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <vector>
 #include <opencv2/opencv.hpp>
 
@@ -9,8 +10,8 @@ using namespace std;
 
 vector<vector<float>> produce_receptive_field(cv::Mat inp){
     vector<vector<float>> potential(
-        Params::pixel_x, 
-        vector<float>(Params::pixel_x, 0.0));
+        inp.rows, 
+        vector<float>(inp.cols, 0.0));
 
     float field1 = 0.625;
     float field2 = 0.125;
@@ -39,9 +40,11 @@ vector<vector<float>> produce_receptive_field(cv::Mat inp){
                         (i+m) <= Params::pixel_x-1 && 
                         (j+n) >= 0 &&
                         (j+n) <= Params::pixel_x-1){
-
+                        uchar pixel_uc = inp.at<uchar>(i+m, j+n);
+                        float pixel = (float)pixel_uc  ;
+                        pixel /= 255.0;
                         sum += kernel.at(ox+m).at(oy+n) * 
-                                ((float)(int)inp.at<uchar>(i+m, j+n)/255.0);
+                                pixel;
                     }
                 }
             }
@@ -50,6 +53,7 @@ vector<vector<float>> produce_receptive_field(cv::Mat inp){
         }
     }
     
+    /*
     cv::Mat image(potential.size(), potential.at(0).size(), CV_64FC1);
     for(int i = 0; i<image.rows; ++i){
         for(int j = 0; j <image.cols;j++){
@@ -57,6 +61,7 @@ vector<vector<float>> produce_receptive_field(cv::Mat inp){
         }
     }
     imwrite("something.png", image);
+    */
     
 
     return potential;

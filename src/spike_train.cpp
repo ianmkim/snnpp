@@ -4,8 +4,10 @@
 #include <math.h>
 
 #include <opencv2/opencv.hpp>
+#include "spike_train.hpp"
 
 #include "params.hpp"
+#include "utils.hpp"
 
 using namespace std;
 using namespace cv;
@@ -15,8 +17,11 @@ float scale(float inp,
             float max_potential, 
             float min_rate,
             float max_rate){
-
-    return ((max_rate - min_rate) * ((inp - min_potential) / (max_potential - min_potential))) + min_rate;
+    
+    float old_range = (max_potential - min_potential);
+    float new_range = (max_rate - min_rate);
+    float new_value = (((inp - min_potential) * new_range) / old_range) + min_rate;
+    return new_value;
 }
 
 vector<vector<float>> encode(vector<vector<float>> &potential){
@@ -26,10 +31,16 @@ vector<vector<float>> encode(vector<vector<float>> &potential){
         for(int j = 0; j < Params::pixel_x; j++){
             vector<float> temp(Params::time+1, 0.0);
             
+            vector<float> r1 = {-1.069, 2.781};
+            vector<float> r2 = {1.0,     20.0};
+            float freq = interpolate(r1, r2, potential.at(i).at(j));
+
+            /*
             float freq = scale(
                     potential.at(i).at(j),
                     -1.069, 2.781, 
-                    1, 20);
+                    1.0, 20.0);
+            */
 
             if(freq <= 0)
                 std::cerr << "Frequency is out of range" << std::endl;
