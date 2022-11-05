@@ -6,44 +6,8 @@
 #include "params.hpp"
 #include "receptive_field.hpp"
 
-#ifdef __APPLE__
-#define NS_PRIVATE_IMPLEMENTATION
-#define CA_PRIVATE_IMPLEMENTATION
-#define MTL_PRIVATE_IMPLEMENTATION
-
-#include <Foundation/Foundation.hpp>
-#include <Metal/Metal.hpp>
-#include <QuartzCore/QuartzCore.hpp>
-
-#include "metal_adder.hpp"
-#endif
 
 using namespace std;
-
-#ifdef __APPLE__
-void produce_receptive_field_metal(cv::Mat &inp, vector<vector<float>> &potential){
-    MTL::Device *device = MTL::CreateSystemDefaultDevice();
-
-    float field1 = 0.625;
-    float field2 = 0.125;
-    float field3 = -0.125;
-    float field4 = -0.5;
-
-    vector<vector<float>> kernel {
-        {field4, field3, field2, field3, field4},
-        {field3, field2, field1, field2, field3}, 
-        {field2, field1,    1.0, field1, field2},
-        {field3, field2, field1, field2, field3},
-        {field4, field3, field2, field3, field4},
-    };
-
-    MetalAdder *adder = new MetalAdder(device);
-
-    adder->prepareData(inp, kernel);
-    adder->computeReceptiveField(potential);
-}
-#endif
-
 vector<vector<float>> produce_receptive_field(cv::Mat &inp){
     vector<vector<float>> potential(
         inp.rows, 

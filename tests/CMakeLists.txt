@@ -18,7 +18,6 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable(${TEST_MAIN} ${TESTFILES})
 target_link_libraries(${TEST_MAIN} PRIVATE ${LIBRARY_NAME} doctest)
 target_link_libraries(${TEST_MAIN} PUBLIC ${OpenCV_LIBS})
-target_include_directories(${TEST_MAIN} PUBLIC ../metal-cpp)
 set_target_properties(${TEST_MAIN} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 set_target_properties(${TEST_MAIN} PROPERTIES

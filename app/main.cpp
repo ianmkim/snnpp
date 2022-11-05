@@ -6,14 +6,10 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "neuron.hpp"
-
+#include "network.hpp"
 
 int main(){
-    std::cout << "Spiking Neural Network" << std::endl;
-
-    Neuron neuron = Neuron();
-    std::cout << "Neuron check res: " << neuron.check() << std::endl;
+    perform_learning();
 }
 
 

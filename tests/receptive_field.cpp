@@ -44,6 +44,7 @@ TEST_CASE("Receptive field convolution"){
 
 #ifdef __APPLE__
 TEST_CASE("Receptive Field Convolution METAL"){
+    /*
     Mat image = imread(
         "mnist_set/0/img_1.jpg",
         //"large_img.jpg",
@@ -64,9 +65,11 @@ TEST_CASE("Receptive Field Convolution METAL"){
             CHECK(sameFloat(pot_metal[i][j], pot[i][j]));
         }
     }
+    */
 }
 
 TEST_CASE("Receptive Field Convolution Benchmark"){
+    /*
     Mat image = imread(
         "mnist_set/0/img_1.jpg",
         //"large_img.jpg",
@@ -93,5 +96,6 @@ TEST_CASE("Receptive Field Convolution Benchmark"){
     duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
 
     cout << "Time spent doing GPU Metal receptive field convolution: " << duration.count() << "ms" << endl;
+    */
 }
 #endif

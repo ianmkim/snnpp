@@ -7,7 +7,7 @@ option(ENABLE_DOCTESTS "Include tests in the library. Setting this to OFF will r
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-anon-enum-enum-conversion")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv8-a+fp+simd+crypto+crc")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework Metal -framework Foundation -framework MetalKit")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework Metal -framework Foundation -framework MetalKit")
 
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
@@ -25,7 +25,8 @@ set(SOURCES
     src/learning.cpp
     src/network.cpp
     src/threshold.cpp
-    src/metal_adder.cpp)
+    #src/metal_adder.cpp
+)
 
 set(TESTFILES
     tests/main.cpp)
@@ -35,15 +36,16 @@ set(LIBRARY_NAME engine) # default name for the library built from src/*.cpp
 add_library(${LIBRARY_NAME} OBJECT ${SOURCES})
 # Lib needs its header files, and users of the library must also see these (PUBLIC). (No change needed)
 target_include_directories(${LIBRARY_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_include_directories(${LIBRARY_NAME} PUBLIC metal-cpp)
+target_include_directories(${LIBRARY_NAME} PRIVATE metal-cpp)
 # There's also (probably) doctests within the library, so we need to see this as well.
 target_link_libraries(${LIBRARY_NAME} PUBLIC doctest)
 
 
 
 add_executable(snn app/main.cpp)
+target_link_libraries( snn PUBLIC ${LIBRARY_NAME} )
 target_link_libraries( snn PUBLIC ${OpenCV_LIBS} )
-target_link_libraries( snn PRIVATE ${LIBRARY_NAME} )
+target_include_directories(snn PRIVATE metal-cpp)
 
 set_target_properties(
     ${LIBRARY_NAME} snn
