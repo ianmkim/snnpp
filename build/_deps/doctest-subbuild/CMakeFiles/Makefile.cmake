@@ -10,8 +10,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.3/CMakeSystem.cmake"
   "CMakeLists.txt"
   "doctest-populate-prefix/tmp/doctest-populate-cfgcmd.txt.in"
+  "/opt/local/share/cmake-3.22/Modules/CMakeDetermineSystem.cmake"
   "/opt/local/share/cmake-3.22/Modules/CMakeGenericSystem.cmake"
   "/opt/local/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake"
+  "/opt/local/share/cmake-3.22/Modules/CMakeSystem.cmake.in"
   "/opt/local/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/local/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake"
   "/opt/local/share/cmake-3.22/Modules/ExternalProject-gitupdate.cmake.in"
@@ -30,6 +32,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/3.22.3/CMakeSystem.cmake"
   "doctest-populate-prefix/src/doctest-populate-stamp/doctest-populate-gitinfo.txt"
   "doctest-populate-prefix/tmp/doctest-populate-gitupdate.cmake"
   "doctest-populate-prefix/tmp/doctest-populate-cfgcmd.txt"

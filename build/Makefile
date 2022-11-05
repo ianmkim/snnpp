@@ -274,6 +274,30 @@ src/learning.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/learning.cpp.s
 .PHONY : src/learning.cpp.s
 
+src/metal_adder.o: src/metal_adder.cpp.o
+.PHONY : src/metal_adder.o
+
+# target to build an object file
+src/metal_adder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/metal_adder.cpp.o
+.PHONY : src/metal_adder.cpp.o
+
+src/metal_adder.i: src/metal_adder.cpp.i
+.PHONY : src/metal_adder.i
+
+# target to preprocess a source file
+src/metal_adder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/metal_adder.cpp.i
+.PHONY : src/metal_adder.cpp.i
+
+src/metal_adder.s: src/metal_adder.cpp.s
+.PHONY : src/metal_adder.s
+
+# target to generate assembly for a file
+src/metal_adder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/metal_adder.cpp.s
+.PHONY : src/metal_adder.cpp.s
+
 src/network.o: src/network.cpp.o
 .PHONY : src/network.o
 
@@ -441,6 +465,9 @@ help:
 	@echo "... src/learning.o"
 	@echo "... src/learning.i"
 	@echo "... src/learning.s"
+	@echo "... src/metal_adder.o"
+	@echo "... src/metal_adder.i"
+	@echo "... src/metal_adder.s"
 	@echo "... src/network.o"
 	@echo "... src/network.i"
 	@echo "... src/network.s"

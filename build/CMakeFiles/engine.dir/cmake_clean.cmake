@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/src/learning.cpp.o"
   "CMakeFiles/engine.dir/src/learning.cpp.o.d"
+  "CMakeFiles/engine.dir/src/metal_adder.cpp.o"
+  "CMakeFiles/engine.dir/src/metal_adder.cpp.o.d"
   "CMakeFiles/engine.dir/src/network.cpp.o"
   "CMakeFiles/engine.dir/src/network.cpp.o.d"
   "CMakeFiles/engine.dir/src/neuron.cpp.o"

@@ -185,7 +185,8 @@ unit_tests_EXTERNAL_OBJECTS = \
 "/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/utils.cpp.o" \
 "/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/learning.cpp.o" \
 "/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/network.cpp.o" \
-"/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/threshold.cpp.o"
+"/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/threshold.cpp.o" \
+"/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/metal_adder.cpp.o"
 
 unit_tests: tests/CMakeFiles/unit_tests.dir/main.cpp.o
 unit_tests: tests/CMakeFiles/unit_tests.dir/neuron.cpp.o
@@ -201,6 +202,7 @@ unit_tests: CMakeFiles/engine.dir/src/utils.cpp.o
 unit_tests: CMakeFiles/engine.dir/src/learning.cpp.o
 unit_tests: CMakeFiles/engine.dir/src/network.cpp.o
 unit_tests: CMakeFiles/engine.dir/src/threshold.cpp.o
+unit_tests: CMakeFiles/engine.dir/src/metal_adder.cpp.o
 unit_tests: tests/CMakeFiles/unit_tests.dir/build.make
 unit_tests: /opt/homebrew/lib/libopencv_gapi.4.6.0.dylib
 unit_tests: /opt/homebrew/lib/libopencv_stitching.4.6.0.dylib

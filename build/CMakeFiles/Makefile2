@@ -119,12 +119,12 @@ tests/clean: tests/CMakeFiles/coverage.dir/clean
 CMakeFiles/engine.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=3,4,5,6,7,8,9 "Built target engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10 "Built target engine"
 .PHONY : CMakeFiles/engine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/engine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/engine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 0
 .PHONY : CMakeFiles/engine.dir/rule
@@ -145,12 +145,12 @@ CMakeFiles/engine.dir/clean:
 CMakeFiles/snn.dir/all: CMakeFiles/engine.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snn.dir/build.make CMakeFiles/snn.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snn.dir/build.make CMakeFiles/snn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=10,11 "Built target snn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=11,12 "Built target snn"
 .PHONY : CMakeFiles/snn.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/snn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/snn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 0
 .PHONY : CMakeFiles/snn.dir/rule
@@ -197,12 +197,12 @@ _deps/doctest-build/CMakeFiles/doctest_with_main.dir/clean:
 tests/CMakeFiles/unit_tests.dir/all: CMakeFiles/engine.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/unit_tests.dir/build.make tests/CMakeFiles/unit_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Built target unit_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=13,14,15,16,17,18,19,20 "Built target unit_tests"
 .PHONY : tests/CMakeFiles/unit_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/unit_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/unit_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/parvus/dev/snn/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/unit_tests.dir/rule

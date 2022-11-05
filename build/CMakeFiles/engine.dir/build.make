@@ -167,6 +167,20 @@ CMakeFiles/engine.dir/src/threshold.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/threshold.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/parvus/dev/snn/src/threshold.cpp -o CMakeFiles/engine.dir/src/threshold.cpp.s
 
+CMakeFiles/engine.dir/src/metal_adder.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/metal_adder.cpp.o: ../src/metal_adder.cpp
+CMakeFiles/engine.dir/src/metal_adder.cpp.o: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/parvus/dev/snn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/engine.dir/src/metal_adder.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/src/metal_adder.cpp.o -MF CMakeFiles/engine.dir/src/metal_adder.cpp.o.d -o CMakeFiles/engine.dir/src/metal_adder.cpp.o -c /Users/parvus/dev/snn/src/metal_adder.cpp
+
+CMakeFiles/engine.dir/src/metal_adder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/metal_adder.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/parvus/dev/snn/src/metal_adder.cpp > CMakeFiles/engine.dir/src/metal_adder.cpp.i
+
+CMakeFiles/engine.dir/src/metal_adder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/metal_adder.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/parvus/dev/snn/src/metal_adder.cpp -o CMakeFiles/engine.dir/src/metal_adder.cpp.s
+
 engine: CMakeFiles/engine.dir/src/neuron.cpp.o
 engine: CMakeFiles/engine.dir/src/receptive_field.cpp.o
 engine: CMakeFiles/engine.dir/src/spike_train.cpp.o
@@ -174,6 +188,7 @@ engine: CMakeFiles/engine.dir/src/utils.cpp.o
 engine: CMakeFiles/engine.dir/src/learning.cpp.o
 engine: CMakeFiles/engine.dir/src/network.cpp.o
 engine: CMakeFiles/engine.dir/src/threshold.cpp.o
+engine: CMakeFiles/engine.dir/src/metal_adder.cpp.o
 engine: CMakeFiles/engine.dir/build.make
 .PHONY : engine
 

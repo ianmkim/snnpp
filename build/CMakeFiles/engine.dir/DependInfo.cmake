@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/parvus/dev/snn/src/learning.cpp" "CMakeFiles/engine.dir/src/learning.cpp.o" "gcc" "CMakeFiles/engine.dir/src/learning.cpp.o.d"
+  "/Users/parvus/dev/snn/src/metal_adder.cpp" "CMakeFiles/engine.dir/src/metal_adder.cpp.o" "gcc" "CMakeFiles/engine.dir/src/metal_adder.cpp.o.d"
   "/Users/parvus/dev/snn/src/network.cpp" "CMakeFiles/engine.dir/src/network.cpp.o" "gcc" "CMakeFiles/engine.dir/src/network.cpp.o.d"
   "/Users/parvus/dev/snn/src/neuron.cpp" "CMakeFiles/engine.dir/src/neuron.cpp.o" "gcc" "CMakeFiles/engine.dir/src/neuron.cpp.o.d"
   "/Users/parvus/dev/snn/src/receptive_field.cpp" "CMakeFiles/engine.dir/src/receptive_field.cpp.o" "gcc" "CMakeFiles/engine.dir/src/receptive_field.cpp.o.d"

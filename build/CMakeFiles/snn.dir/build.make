@@ -95,7 +95,8 @@ snn_EXTERNAL_OBJECTS = \
 "/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/utils.cpp.o" \
 "/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/learning.cpp.o" \
 "/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/network.cpp.o" \
-"/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/threshold.cpp.o"
+"/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/threshold.cpp.o" \
+"/Users/parvus/dev/snn/build/CMakeFiles/engine.dir/src/metal_adder.cpp.o"
 
 snn: CMakeFiles/snn.dir/app/main.cpp.o
 snn: CMakeFiles/engine.dir/src/neuron.cpp.o
@@ -105,6 +106,7 @@ snn: CMakeFiles/engine.dir/src/utils.cpp.o
 snn: CMakeFiles/engine.dir/src/learning.cpp.o
 snn: CMakeFiles/engine.dir/src/network.cpp.o
 snn: CMakeFiles/engine.dir/src/threshold.cpp.o
+snn: CMakeFiles/engine.dir/src/metal_adder.cpp.o
 snn: CMakeFiles/snn.dir/build.make
 snn: /opt/homebrew/lib/libopencv_gapi.4.6.0.dylib
 snn: /opt/homebrew/lib/libopencv_stitching.4.6.0.dylib
