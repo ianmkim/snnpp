@@ -29,6 +29,40 @@ cv::Mat toCVMat(const std::vector<std::vector<float>> &vecIn, const float multip
     return matOut;
 }
 
+float dot_sse(float* arr1, float* arr2, int len){
+    int num_to_pad = len % 4;
+    size_t new_size = len + num_to_pad;
+    float* realloced1 = (float*)realloc(arr1, new_size * sizeof(float));
+    if(realloced1){
+        arr1 = realloced1;
+        memset(arr1+len, 0.0, num_to_pad * sizeof(float));
+    } else return -1;
+
+    float* realloced2 = (float*)realloc(arr2, new_size * sizeof(float));
+    if(realloced2){
+        arr2 = realloced2;
+        memset(arr2+len, 0.0, num_to_pad * sizeof(float));
+    } else return -1;
+
+    float arr[4]; 
+    float total; 
+    
+    int i;
+    __m128 num1, num2, num3, num4;
+    num4 = _mm_setzero_ps();
+    for(i = 0; i < len + num_to_pad; i+=4){
+        num1 = _mm_loadu_ps(arr1+i); 
+        num2 = _mm_loadu_ps(arr2+i);
+        num3 = _mm_mul_ps(num1, num2);
+        num3 = _mm_hadd_ps(num3, num3);
+        num4 = _mm_add_ps(num4, num3);
+    }
+    num4 = _mm_hadd_ps(num4, num4);
+    _mm_store_ss(&total, num4);
+   
+    return total;
+}
+
 float dot_sse(std::vector<float> &v1, std::vector<float> &v2){
     assert(v1.size() == v2.size());
 

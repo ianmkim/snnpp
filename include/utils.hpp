@@ -12,13 +12,15 @@ float genRandom(float low=0.0, float high=1.0);
 
 cv::Mat toCVMat(const std::vector<std::vector<float>> &vecIn, const float multiple);
 
+float dot_sse(float* arr1, float* arr2, int len);
 float dot_sse(std::vector<float> &v1, std::vector<float> &v2);
 
 
 /*
  * from https://cplusplus.com/forum/general/216928/
  */
-template<typename T> T interpolate( std::vector<T> &xData, std::vector<T> &yData, T x, bool extrapolate=false){
+template<typename T> 
+T interpolate( std::vector<T> &xData, std::vector<T> &yData, T x, bool extrapolate=false){
     int size = xData.size();
 
     // find left end of interval for interpolation
@@ -62,19 +64,29 @@ template <typename T>
 std::vector<T> slice_col(int idx, std::vector<std::vector<T>> &v){
     assert(v.size() > 0);
     assert(idx < v.at(0).size());
-    std::vector<T> col;
+    std::vector<T> col(v.size());
+    int ptr = 0;
     for(int i = 0; i < v.size(); i++){
-        col.push_back(v.at(i).at(idx));
+        col[ptr++] = v.at(i).at(idx);
     } return col;
+}
+
+template <typename T>
+T* slice_col(int idx, T** v, int width, int height){
+    T* out = (T*)malloc(height * sizeof(T));
+    if(out == NULL) return NULL;
+    int ptr = 0;
+    for(int i = 0; i < height; i++){
+        out[ptr++] = v[i][idx];
+    } return out;
 }
 
 template <typename T>
 std::vector<T> slice_row(int idx, std::vector<std::vector<T>> &v){
     assert(idx < v.size());
-    std::vector<T> row;
-    for(T item : v.at(idx)){
-        row.push_back(item);
-    } return row;
+    std::vector<T> row(v.at(idx).size());
+    memcpy(row.data(), v.at(idx).data(), v.at(idx).size() * sizeof(T));
+    return row;
 }
 
 template<typename T>
