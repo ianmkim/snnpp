@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <numeric>
+#include <random>
 #include <opencv2/opencv.hpp>
 #include <filesystem>
 
@@ -143,7 +144,9 @@ void Network::update_weights(vector<vector<float>> &spike_train, int t){
     }
 }
 
-void Network::train_on_potential(vector<vector<float>> &potential){
+vector<int> Network::train_on_potential(vector<vector<float>> &potential){
+    vector<int> num_spikes(this->out_dim);
+
     vector<vector<float>> spike_train = encode(potential);
 
     float thresh = threshold(spike_train);
@@ -178,6 +181,10 @@ void Network::train_on_potential(vector<vector<float>> &potential){
             }
         }
 
+        for(int n_indx = 0; n_indx < this->out_dim; n_indx++)
+            if(this->layer2.at(n_indx).check())
+                num_spikes[n_indx]++;
+
         // check for spikes and update weights accordingly
         this->update_weights(spike_train, t);
         
@@ -193,6 +200,8 @@ void Network::train_on_potential(vector<vector<float>> &potential){
             }
         }
     }
+
+    return num_spikes;
 }
 
 void Network::reconstruct_weights(float* weights, int num){
@@ -208,7 +217,9 @@ void Network::reconstruct_weights(float* weights, int num){
     imwrite("neuron_" + to_string(num) + ".png", image);
 }
 
-vector<string> Network::get_training_data(const string traindir, const int max_per_category){
+vector<string> Network::get_training_data(const string traindir, 
+                                    const int max_per_category, 
+                                    const bool shuffle){
     vector<string> dirs;
     for(auto& p : std::filesystem::directory_iterator(traindir))
         if (p.is_directory())
@@ -231,8 +242,12 @@ vector<string> Network::get_training_data(const string traindir, const int max_p
             if(p.is_regular_file())
                 paths_to_data.push_back(traindir + "/" + p.path().filename().string());
     }
-    return paths_to_data;
 
+    if(shuffle){
+        auto rng = std::default_random_engine{};
+        std::shuffle(std::begin(paths_to_data), std::end(paths_to_data), rng);
+    }
+    return paths_to_data;
 }
 
 void Network::reconstruct_all_weights(){
@@ -241,12 +256,11 @@ void Network::reconstruct_all_weights(){
     }
 }
 
-void Network::train(const string datadir, 
+void Network::train(const vector<string> &data_paths, 
                     const int epochs, 
                     const bool verbose, 
                     const bool viz_synapse){
 
-    vector<string> data_paths = this->get_training_data(datadir, 10);
     for(int k = 0; k < epochs; k++){
         cout << "\nProcessing epoch " << k << endl;
         progressbar bar(data_paths.size());
@@ -264,6 +278,18 @@ void Network::train(const string datadir,
     if(viz_synapse) this->reconstruct_all_weights();
 }
 
+int Network::predict(const string filename){
+    Mat image = imread(filename, IMREAD_GRAYSCALE);
+    if(!image.empty()){
+        vector<vector<float>> potential = produce_receptive_field(image);
+        vector<int> spikes_per_neuron = this->train_on_potential(potential);
+        std::vector<int>::iterator max = max_element(spikes_per_neuron.begin(), spikes_per_neuron.end()); // [2, 4)
+        return distance(spikes_per_neuron.begin(), max);
+    }
+    return -1;
+}
+
+
 Network::~Network(){
     for(int i = 0; i < this->out_dim; i++){
         free(this->synapse[i]);
@@ -272,6 +298,15 @@ Network::~Network(){
 
 void perform_learning(){
     Network net(28, 28, 30);
-    net.train("mnist_set", 5, true, true);
+    /*
+    vector<string> data_paths = net.get_training_data("mnist_set", 500, true);
+    net.train(data_paths, 12, true, true);
+    net.save_weights("weights.dat");
+    */
+
+    net.load_weights("weights.dat");
+    net.reconstruct_all_weights();
+    int res = net.predict("mnist_set/9/img_1.jpg");
+    cout << res << endl;
 }
 

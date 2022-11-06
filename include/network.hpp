@@ -42,19 +42,20 @@ public:
 
     void update_weights(vector<vector<float>> &spike_train, int t);
 
-    void train_on_potential(vector<vector<float>> &potential);
+    vector<int> train_on_potential(vector<vector<float>> &potential);
 
     void reconstruct_weights(float* weights, int num);
 
-    vector<string> get_training_data(const string traindir, const int max_per_category);
+    vector<string> get_training_data(const string traindir, const int max_per_category, const bool shuffle=true);
 
     void reconstruct_all_weights();
 
-    void train(const string datadir, 
+    void train(const vector<string> &data_paths, 
                     const int epochs, 
                     const bool verbose = true, 
                     const bool viz_synapse = true);
 
+    int predict(const string filename);
 
 
     ~Network();
