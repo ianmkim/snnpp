@@ -32,10 +32,11 @@ set(TESTFILES
     tests/main.cpp)
 
 
-set(LIBRARY_NAME engine) # default name for the library built from src/*.cpp
-add_library(${LIBRARY_NAME} OBJECT ${SOURCES})
+set(LIBRARY_NAME snnpp) # default name for the library built from src/*.cpp
+add_library(${LIBRARY_NAME} SHARED ${SOURCES})
 # Lib needs its header files, and users of the library must also see these (PUBLIC). (No change needed)
 target_include_directories(${LIBRARY_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(${LIBRARY_NAME} PUBLIC ${OpenCV_LIBS} )
 target_include_directories(${LIBRARY_NAME} PRIVATE metal-cpp)
 # There's also (probably) doctests within the library, so we need to see this as well.
 target_link_libraries(${LIBRARY_NAME} PUBLIC doctest)
