@@ -56,6 +56,21 @@ Network::Network(int inp_x, int inp_y,
     this->a_plus = a_plus;
     this->a_minus = a_minus;
 
+    float field1 = 0.625;
+    float field2 = 0.125;
+    float field3 = -0.125;
+    float field4 = -0.5;
+
+    vector<vector<float>> kernel {
+        {field4, field3, field2, field3, field4},
+        {field3, field2, field1, field2, field3},
+        {field2, field1,    1.0, field1, field2},
+        {field3, field2, field1, field2, field3},
+        {field4, field3, field2, field3, field4},
+    };
+
+    this->kernel = kernel;
+
     for(int i = 0; i < out_dim; i++){
         Neuron a;
         this->layer2.push_back(a);
@@ -269,7 +284,7 @@ void Network::train(const vector<string> &data_paths,
             Mat image = imread(filename, IMREAD_GRAYSCALE);
             if(!image.empty()){
                 if(verbose) bar.update(); 
-                vector<vector<float>> potential = produce_receptive_field(image);
+                vector<vector<float>> potential = produce_receptive_field(image, this->kernel);
                 this->train_on_potential(potential);
             }
         }
@@ -281,7 +296,7 @@ void Network::train(const vector<string> &data_paths,
 int Network::predict(const string filename){
     Mat image = imread(filename, IMREAD_GRAYSCALE);
     if(!image.empty()){
-        vector<vector<float>> potential = produce_receptive_field(image);
+        vector<vector<float>> potential = produce_receptive_field(image, this->kernel);
         vector<int> spikes_per_neuron = this->train_on_potential(potential);
         std::vector<int>::iterator max = max_element(spikes_per_neuron.begin(), spikes_per_neuron.end()); // [2, 4)
         return distance(spikes_per_neuron.begin(), max);

@@ -6,7 +6,11 @@
 
 using namespace std;
 
-vector<vector<float>> produce_receptive_field(cv::Mat &inp);
+void produce_receptive_field_sse(cv::Mat &inp, 
+                                const vector<vector<float>> &kernel, 
+                                vector<vector<float>> &potential);
+
+vector<vector<float>> produce_receptive_field(cv::Mat &inp, vector<vector<float>> &kernel);
 
 #ifdef __APPLE__
 

@@ -29,6 +29,24 @@ TEST_CASE("Dot product SSE"){
     CHECK(dot_answer == 55);
 }
 
+TEST_CASE("Dot product SSE array"){
+    vector<float> vv1 = {1, 2, 3, 4, 5};
+    vector<float> vv2 = {6, 4, 6, 2, 3};
+
+    float* v1 = (float*)malloc(vv1.size() * sizeof(float));
+    memcpy(v1, vv1.data(), vv1.size() * sizeof(float));
+    float* v2 = (float*)malloc(vv2.size() * sizeof(float));
+    memcpy(v2, vv2.data(), vv2.size() * sizeof(float));
+
+    float dot_answer = dot_sse(v1, v2, vv1.size());
+
+    free(v1);
+    free(v2);
+
+    CHECK(dot_answer == 55);
+}
+
+
 
 TEST_CASE("slice col"){
     vector<vector<int>> v1 = {

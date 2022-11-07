@@ -30,19 +30,21 @@ cv::Mat toCVMat(const std::vector<std::vector<float>> &vecIn, const float multip
 }
 
 float dot_sse(float* arr1, float* arr2, int len){
-    int num_to_pad = len % 4;
-    size_t new_size = len + num_to_pad;
-    float* realloced1 = (float*)realloc(arr1, new_size * sizeof(float));
-    if(realloced1){
-        arr1 = realloced1;
-        memset(arr1+len, 0.0, num_to_pad * sizeof(float));
-    } else return -1;
+    int num_to_pad = (ceil((double)len/4.0) * 4) - len;
+    if(num_to_pad > 0){
+        size_t new_size = len + num_to_pad;
+        float* realloced1 = (float*)realloc(arr1, new_size * sizeof(float));
+        if(realloced1){
+            arr1 = realloced1;
+            memset(arr1+len, 0.0, num_to_pad * sizeof(float));
+        } else return -1;
 
-    float* realloced2 = (float*)realloc(arr2, new_size * sizeof(float));
-    if(realloced2){
-        arr2 = realloced2;
-        memset(arr2+len, 0.0, num_to_pad * sizeof(float));
-    } else return -1;
+        float* realloced2 = (float*)realloc(arr2, new_size * sizeof(float));
+        if(realloced2){
+            arr2 = realloced2;
+            memset(arr2+len, 0.0, num_to_pad * sizeof(float));
+        } else return -1;
+    }
 
     float arr[4]; 
     float total; 
@@ -66,7 +68,7 @@ float dot_sse(float* arr1, float* arr2, int len){
 float dot_sse(std::vector<float> &v1, std::vector<float> &v2){
     assert(v1.size() == v2.size());
 
-    int num_to_pad = v1.size() % 4;
+    int num_to_pad = (ceil((double)v1.size()/4.0) * 4) - v1.size();
     for(int i = 0; i < num_to_pad; i++){
         v1.push_back(0);
         v2.push_back(0);

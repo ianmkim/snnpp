@@ -47,8 +47,22 @@ TEST_CASE("Testing Spike Train"){
     Mat image = imread(
         "mnist_set/2/img_2.jpg", IMREAD_GRAYSCALE);
 
+    float field1 = 0.625;
+    float field2 = 0.125;
+    float field3 = -0.125;
+    float field4 = -0.5;
+
+    vector<vector<float>> kernel {
+        {field4, field3, field2, field3, field4},
+        {field3, field2, field1, field2, field3},
+        {field2, field1,    1.0, field1, field2},
+        {field3, field2, field1, field2, field3},
+        {field4, field3, field2, field3, field4},
+    };
+
+
     CHECK(image.empty() == false);
-    vector<vector<float>> pot = produce_receptive_field(image);
+    vector<vector<float>> pot = produce_receptive_field(image, kernel);
     
     CHECK(pot.size() >= 1);
     CHECK(pot[0].size() >= 1);

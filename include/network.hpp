@@ -19,6 +19,8 @@ public:
     float p_min, p_rest, w_max, w_min;
     float a_plus, a_minus, tau_plus, tau_minus;
 
+    std::vector<std::vector<float>> kernel;
+
     Network(int inp_x, int inp_y, 
             int out_dim, 
             int scale = 1, 
