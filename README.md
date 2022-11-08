@@ -13,6 +13,7 @@ The network was trained and tested on the MNIST dataset, which is higher dimensi
 
 
 ## Install & Build
+SNNPP has been tested on M1 based MacOS 12, 13 and Ubuntu 20.04 ARM & x86_64
 Install dependencies:
 ```
 opencv
