@@ -162,4 +162,10 @@ The receptive field convolution was also optimized based on the `dot_sse` functi
 
 We saw more than ~40% reduction between the naive loop receptive field convolution and SIMD intrinsics optimized convolution.
 
-## Results
+
+# Results
+The network was trained and tested on the MNIST dataset, which is higher dimensional than the SEMION dataset the original paper and code were trained on. However, despite this additional challenge, the network was able to learn representations to all classes of the MNIST dataset out of 30 output neurons. Because this is a single layer SNN, we can use the weights to directly generate representations of these digits and reconstruct them into actual images. Some sample images are listed below:
+
+30 neurons were able to learn all digits except the digit 4. With a little bit of tuning and data set augumentation (or adding more neurons) we could probably get it to learn 4.
+
+![alt text](https://github.com/ianmkim/snnpp/blob/master/docs/neurons.jpg?raw=true)
