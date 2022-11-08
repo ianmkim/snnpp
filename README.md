@@ -135,6 +135,9 @@ Unlike a regular DLN, the input image cannot be fed into the model as its plain 
 ### Learning rule
 The learning follows principles of Spike-Timing-Dependent Plasticity (STDP) which is a Hebbian-esq unsupervized algorithm. The STDP equation models the change in synaptic weight based on the time between the presynaptic spike and the post synaptic spike. If the time difference is positive (meaning that it did not contribute to the spike) the synaptic weight is decreased and if the time difference is negative, the synaptic weight is increased. The functions themselves are an exponential growth and inverted exponential growth functions such that only the asymptote side of the y-axis is used for respective positive and negative time differences. The actual new weight values are limited by a weight min and max and is controlled by a learning rate term as well.
 
+![alt text](https://github.com/ianmkim/snnpp/blob/master/docs/STDP.png?raw=true)
+
+
 The prediction and training is done by simulating the response of the output layer of the network for 200 time steps. 
 
 
