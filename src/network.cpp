@@ -35,7 +35,8 @@ Network::Network(int inp_x, int inp_y,
             float a_plus,
             float a_minus,
             float tau_plus,
-            float tau_minus){
+            float tau_minus,
+            bool simd_optimized){
     this->inp_dim = inp_x * inp_y;
     this->out_dim = out_dim;
 
@@ -89,6 +90,12 @@ Network::Network(int inp_x, int inp_y,
     }
 }
 
+/*
+ * save_weights
+ * utility function to save the weights to disk
+ * 
+ * @param string filename to save the weights to
+ */
 void Network::save_weights(const string filename){
     FILE *dat = fopen(filename.c_str(), "w"); // opens new file for writing
     if(dat == NULL) return;
@@ -102,6 +109,12 @@ void Network::save_weights(const string filename){
     }
 }
 
+/*
+ * load_weights
+ * utility function to load weights from disk 
+ * 
+ * @param string filepath to load the weights from
+ */
 void Network::load_weights(const string filename){
     FILE *dat = fopen(filename.c_str(), "r");
     if(dat == NULL) return;
@@ -120,6 +133,19 @@ void Network::load_weights(const string filename){
     }
 }
 
+/*
+ * lateral inhibition
+ * Given a threshold and the active potentials of the final layer, performs
+ * lateral inhibition such that inhibitory signals are sent to all other neurons
+ * in the final layers and only the most active neuron gets his weights adjusted
+ * 
+ * However, there is a threshold term to eliminate only minutely different 
+ * 
+ * @param vector of ints that indicate the active potentials
+ * @param float minimum threshold to be considered a winner
+ * 
+ * @return int the index of the neuron in the final layer that won for this image
+ */
 int Network::lateral_inhibition(vector<int> &active_potential, float thresh) {
     float highest_pot = *max_element(active_potential.begin(), active_potential.end());
     int img_win = -1;
@@ -133,6 +159,15 @@ int Network::lateral_inhibition(vector<int> &active_potential, float thresh) {
     return img_win;
 }
 
+/*
+ * update_weights
+ * given a the spike patterns of all neurons in the final layer and the current
+ * time unit in the simulation, update the weights from the input to output
+ * neurons accordingly
+ * 
+ * @param 2d vector of floats that indicate spike values 
+ * @param int time 
+ */
 void Network::update_weights(vector<vector<float>> &spike_train, int t){
     for(int j = 0; j < this->layer2.size(); j++){
         Neuron* neuron = &this->layer2.at(j);
@@ -159,6 +194,15 @@ void Network::update_weights(vector<vector<float>> &spike_train, int t){
     }
 }
 
+/*
+ * train_on_potential
+ * adjust the weights of the network for one simulation run (0-200 time units)
+ * based on one single input image (which must be preprocessed into membrane 
+ * potential)
+ * 
+ * @param potential
+ * @return the number of spikes of every neuron
+ */
 vector<int> Network::train_on_potential(vector<vector<float>> &potential){
     vector<int> num_spikes(this->out_dim);
 
@@ -219,6 +263,15 @@ vector<int> Network::train_on_potential(vector<vector<float>> &potential){
     return num_spikes;
 }
 
+/*
+ * reconstruct_weights
+ * given all weights of a single neuron, it reshapes it as an image
+ * and saves it. Because of the single layer archetecture, we can directly
+ * reconstruct weights to use as generated digits.
+ * 
+ * @param float array of weights
+ * @param int number of the neuron
+ */
 void Network::reconstruct_weights(float* weights, int num){
     Mat image(this->inp_x, this->inp_y, CV_8UC1);
     vector<float> r1 = {this->w_min, this->w_max};
@@ -232,6 +285,68 @@ void Network::reconstruct_weights(float* weights, int num){
     imwrite("neuron_" + to_string(num) + ".png", image);
 }
 
+/*
+ * reconstruct_all_weights
+ * reconstruct the weights of all neurons in the final layer
+ */
+void Network::reconstruct_all_weights(){
+    for(int i = 0; i < this->out_dim; i++){
+        this->reconstruct_weights(this->synapse[i], i+1);
+    }
+}
+
+void Network::reconstruct_all_weights_for_animation(const string filepath, int num){
+    for(int n = 0; n < this->out_dim; n++) {
+        auto weights = this->synapse[n];
+        Mat image(this->inp_x, this->inp_y, CV_8UC1);
+        vector<float> r1 = {this->w_min, this->w_max};
+        vector<float> r2 = {0.0, 255.0};
+        for(int i = 0; i < this->inp_x; i++){
+            for(int j = 0; j < this->inp_y; j++){
+                uchar pixel_val = (uchar)interpolate(r1, r2, weights[(Params::pixel_x * i) + j]);
+                image.at<uchar>(i, j) = pixel_val;
+            }
+        }
+        string out_path = filepath + "/" + to_string(n) + "/" + to_string(num) + ".png";
+        imwrite(out_path, image);
+    }
+}
+
+/*
+ * get_training_data
+ * given a path to the training directory, it retrieves and returns
+ * a vector of image paths that comprise the training set. The training
+ * directory could either be categorized or uncategorized. 
+ * 
+ * 
+ * 1) categorized:
+ * minst_set/
+ *   category1/
+ *       img1.jpg
+ *       img2.jpg
+ *       ...
+ *   category2/
+ *       img1.jpg
+ *       img2.jpg
+ *       ...
+ *   ...
+ *
+ * 2) uncategorized:
+ * mnist_set/
+ *    img1.jpg
+ *    img2.jpg
+ *    img3.jpg
+ *    img4.jpg
+ *    ...
+ * 
+ * Optionally you can also choose how many pieces of data to retrive from each category
+ * 
+ * @param constant string path to the data directory
+ * @param constant int for how many pieces of data per category
+ * @param constant boolean for whether to shuffle the dataset
+ * 
+ * @return vector of strings for image paths
+ */
 vector<string> Network::get_training_data(const string traindir, 
                                     const int max_per_category, 
                                     const bool shuffle){
@@ -265,63 +380,73 @@ vector<string> Network::get_training_data(const string traindir,
     return paths_to_data;
 }
 
-void Network::reconstruct_all_weights(){
-    for(int i = 0; i < this->out_dim; i++){
-        this->reconstruct_weights(this->synapse[i], i+1);
-    }
-}
 
+
+/*
+ * train
+ * trains the neural network on the given set of images for n
+ * epochs. You can pass in additional options for verbosity 
+ * and whether to vizualize the output synapses
+ * 
+ * @param vector of paths to training images, you can get this from get_training_data()
+ * @param int epochs to train the network
+ * @param boolean enables and disables the progress bar
+ * @param boolean determines whether to reconstruct weights into images
+ */
 void Network::train(const vector<string> &data_paths, 
                     const int epochs, 
                     const bool verbose, 
                     const bool viz_synapse){
 
+    
+    int indx = 0; 
     for(int k = 0; k < epochs; k++){
         cout << "\nProcessing epoch " << k << endl;
         progressbar bar(data_paths.size());
-        
         for(string filename : data_paths){
             Mat image = imread(filename, IMREAD_GRAYSCALE);
             if(!image.empty()){
                 if(verbose) bar.update(); 
-                vector<vector<float>> potential = produce_receptive_field(image, this->kernel);
+                vector<vector<float>> potential(image.rows, vector<float>(image.cols, 0));
+                produce_receptive_field_sse(image, this->kernel, potential);
                 this->train_on_potential(potential);
             }
+
+            if(viz_synapse) this->reconstruct_all_weights_for_animation("animation", indx++);
         }
     }
 
+    if(verbose) cout << endl;
     if(viz_synapse) this->reconstruct_all_weights();
 }
 
+/*
+ * predict
+ * predicts what category a single given image will be in by doing a forward pass
+ * simulation through the network.
+ * 
+ * @param constant string filepath to the input image
+ * 
+ * @return int index of the output neuron with most activation. -1 if no image given
+ */
 int Network::predict(const string filename){
     Mat image = imread(filename, IMREAD_GRAYSCALE);
     if(!image.empty()){
-        vector<vector<float>> potential = produce_receptive_field(image, this->kernel);
+        vector<vector<float>> potential(image.rows, vector<float>(image.cols, 0));
+        produce_receptive_field_sse(image, this->kernel, potential);
         vector<int> spikes_per_neuron = this->train_on_potential(potential);
-        std::vector<int>::iterator max = max_element(spikes_per_neuron.begin(), spikes_per_neuron.end()); // [2, 4)
+        std::vector<int>::iterator max = max_element(spikes_per_neuron.begin(), spikes_per_neuron.end());
         return distance(spikes_per_neuron.begin(), max);
     }
     return -1;
 }
 
-
+/*
+ * Destructor
+ * frees the heap allocated 2d float array synapse before destroying the object
+ */
 Network::~Network(){
     for(int i = 0; i < this->out_dim; i++){
         free(this->synapse[i]);
     } free(this->synapse);
 }
-
-void perform_learning(){
-    Network net(28, 28, 30);
-    /*
-    vector<string> data_paths = net.get_training_data("mnist_set", 500, true);
-    net.train(data_paths, 12, true, true);
-    net.save_weights("weights.dat");
-    */
-
-    net.load_weights("weights.dat");
-    net.reconstruct_all_weights();
-    int res = net.predict("mnist_set/9/img_1.jpg");
-    cout << res << endl;
-}
-

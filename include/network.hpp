@@ -34,7 +34,8 @@ public:
             float a_plus = 0.8,
             float a_minus = 0.3,
             float tau_plus = 8,
-            float tau_minus = 5);
+            float tau_minus = 5,
+            bool simd_optimized=true);
 
     void save_weights(const string filename);
     
@@ -47,6 +48,8 @@ public:
     vector<int> train_on_potential(vector<vector<float>> &potential);
 
     void reconstruct_weights(float* weights, int num);
+
+    void reconstruct_all_weights_for_animation(const string filepath, int num);
 
     vector<string> get_training_data(const string traindir, const int max_per_category, const bool shuffle=true);
 
@@ -62,7 +65,4 @@ public:
 
     ~Network();
 };
-
-void perform_learning();
-
 #endif

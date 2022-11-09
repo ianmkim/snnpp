@@ -10,7 +10,36 @@ The network was trained and tested on the MNIST dataset, which is higher dimensi
 
 ![alt text](https://github.com/ianmkim/snnpp/blob/master/docs/neurons.jpg?raw=true)
 
+This implementation also saw massive ~2000% speed up over the paper's reference implementation.
+This implementation (C++):
+``` bash
+╭─parvus at core in ~/dev/fun/snn on master✘✘✘
+╰─± time build/snn
 
+Processing epoch 0
+[##################################################] 100%
+Processing epoch 1
+[##################################################] 100%
+Processing epoch 2
+[##################################################] 100%
+Processing epoch 3
+[##################################################] 100%
+Processing epoch 4
+[##################################################] 100%
+build/snn  48.36s user 0.89s system 98% cpu 49.765 total
+```
+
+Reference Implementation (Python):
+``` bash
+╭─parvus at core in ~/dev/school/Spiking-Neural-Network on master✘✘✘
+╰─± time python3 training/learning.py
+100%|███████████████████████████████████████████████████| 1990/1990 [03:12<00:00, 10.35it/s]
+100%|███████████████████████████████████████████████████| 1990/1990 [03:20<00:00,  9.92it/s]
+100%|███████████████████████████████████████████████████| 1990/1990 [03:23<00:00,  9.78it/s]
+100%|███████████████████████████████████████████████████| 1990/1990 [03:26<00:00,  9.63it/s]
+100%|███████████████████████████████████████████████████| 1990/1990 [03:27<00:00,  9.61it/s]
+python3 training/learning.py  1018.43s user 13.60s system 92% cpu 18:39.88 total
+```
 
 ## Install & Build
 Install dependencies:

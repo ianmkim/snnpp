@@ -6,13 +6,69 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
+/*
+ * sameFloat
+ * Equality checks with floats given an epsilon value
+ * 
+ * @param float first number
+ * @param float second number
+ * @param float error term epsilon
+ * 
+ * @return boolean whether numbers are same or not
+ */
 bool sameFloat(float x, float y, float epsilon=0.001);
 
+
+/*
+ * genRandom
+ * given a low bound and high bound, calculates a random
+ * number within the range
+ * 
+ * @param float min number
+ * @param float max number
+ * 
+ * @returns generated random number
+ */
 float genRandom(float low=0.0, float high=1.0);
 
+/*
+ * toCVMat
+ * converts a 2D vector into an openCV image. 1Channel only
+ * 
+ * @param 2d vector that represents the image
+ * @param float multiple to scale each pixel vlaues as
+ */
 cv::Mat toCVMat(const std::vector<std::vector<float>> &vecIn, const float multiple);
 
+/*
+ * dot_sse
+ * performs the dot product of arr1 and arr2. Optimized with
+ * SSE SIMD intrinsics.
+ * 
+ * The float array parameters MUST be heap allocated because they
+ * need to extended if they are not a multiple of 4
+ * 
+ * @param float array arr1
+ * @param float array arr2
+ * 
+ * @return float dot product of arr1 and arr2
+ */
 float dot_sse(float* arr1, float* arr2, int len);
+
+/*
+ * dot_sse
+ * performs the dot product of arr1 and arr2. Optimized with
+ * SSE SIMD intrinsics.
+ * 
+ * SIDE EFFECT: the vectors will be resized to a multiple of 4
+ * if and the remaining elements will be filled with 0 values
+ * if the vector is not a multiple of 4 already.
+ * 
+ * @param float vector v1
+ * @param float vector v2
+ * 
+ * @return float dot product of v1 and v2
+ */
 float dot_sse(std::vector<float> &v1, std::vector<float> &v2);
 
 

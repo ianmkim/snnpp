@@ -5,6 +5,13 @@
 
 using namespace std;
 
+/*
+ * threshold 
+ * determines the threshold for winning given a spike train
+ * 
+ * @param reference to the 2d spike train
+ * @return the threshold in float
+ */
 float threshold(vector<vector<float>> &train){
     int train_len = train.at(0).size();
     int thresh = 0;

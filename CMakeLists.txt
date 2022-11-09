@@ -6,6 +6,7 @@ option(ENABLE_DOCTESTS "Include tests in the library. Setting this to OFF will r
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-anon-enum-enum-conversion")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv8-a+fp+simd+crypto+crc")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast")
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework Metal -framework Foundation -framework MetalKit")
 
