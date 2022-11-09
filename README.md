@@ -42,6 +42,7 @@ python3 training/learning.py  1018.43s user 13.60s system 92% cpu 18:39.88 total
 ```
 
 ## Install & Build
+SNNPP has been tested on M1 based MacOS 12, 13 and Ubuntu 20.04 ARM & x86_64
 Install dependencies:
 ```
 opencv
@@ -189,7 +190,7 @@ There are multiple APIs that perform dot products. The regular templated `dot` f
 
 The array based `dot` function does the same thing except with heap allocated arrays. This is marginally faster. 
 
-The vector based `dot_sse` function uses Intel SSE SIMD intrinsics are used (with support for ARM NEON intrinsics as well with the help of the `sse2neon.h` library). We use the `_m128` registers to multiply and sum multiple values at the same time.
+The vector based `dot_sse` function uses Intel SSE SIMD intrinsics are used (with support for ARM NEON intrinsics as well with the help of the `sse2neon.h` library). We use the `_m128` registers to multiply and sum multiple float values at the same time.
 
 The array based `dot_sse` improves upon the vector based one by padding a heap allocated array with a multiple of 4 using `realloc` then memset-ing them with 0 until the end. This is much much faster than the vector based functions. However, they require interacting with dynamic memory allocation rather than using references.
 
