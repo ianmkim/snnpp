@@ -12,7 +12,7 @@ The network was trained and tested on the MNIST dataset, which is higher dimensi
 
 The evolution of the weights of each neurons as it goes through the training process
 
-![alt_text](https://github.com/ianmkim/snnpp/blob/master/animation/snn.mp4?raw=true)
+![alt_text](https://github.com/ianmkim/snnpp/blob/master/animation/snn.gif?raw=true)
 
 This implementation also saw massive ~2000% speed up over the paper's reference implementation.
 This implementation (C++):
