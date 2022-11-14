@@ -182,6 +182,17 @@ Process 9416: 2041 nodes malloced for 427 KB
 Process 9416: 0 leaks for 0 total leaked bytes.
 ```
 
+## Project Structure
+```bash
+src/
+    learning.cpp    # weight adjustment code
+    network.cpp     # implements network & training code
+    neuron.cpp      # implements neuron code
+    receptive_field.cpp # implements image preprocessing code
+    spike_train.cpp # implements encoding code to convert inp to spike train
+    threshold.cpp   # implements variable treshold for training
+    utils.cpp       # various linear algebra & math utils
+```
 
 ## Architecture
 ### Neuron
