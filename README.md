@@ -3,6 +3,8 @@ SNN++ implements a single layer non linear Spiking Neural Network for images cla
 
 The main idea behind a spiking neural network is that instead of real valued inputs, SNN process spatial and time-dependent input stream of 0s and 1s that more efficiently encode information. The network implemented here is a dense, feed-forward, single-layer, and unsupervized network that possess both generative and discriminative abilities.
 
+The implementation was based on [this paper](https://link.springer.com/article/10.1186/s13640-015-0059-4) and this python [reference implementation](https://github.com/Shikhargupta/Spiking-Neural-Network). This implementation offers massive speed ups and an extensible shared library that can be used and embedded in other C++ or python applications. As well as offering additional visualization features
+
 # Results
 The network was trained and tested on the MNIST dataset, which is higher dimensional than the SEMION dataset the original paper and code were trained on. However, despite this additional challenge, the network was able to learn representations to all classes of the MNIST dataset out of 30 output neurons. Because this is a single layer SNN, we can use the weights to directly generate representations of these digits and reconstruct them into actual images. Some sample images are listed below:
 
@@ -14,7 +16,8 @@ The evolution of the weights of each neurons as it goes through the training pro
 
 ![alt_text](https://github.com/ianmkim/snnpp/blob/master/animation/snn.gif?raw=true)
 
-This implementation also saw massive ~2000% speed up over the paper's reference implementation.
+This implementation also saw massive ~2000% speed up over the paper's reference implementation. The following two tests were run on an M1 Pro with clang native arm64 compilation.
+
 This implementation (C++):
 ``` bash
 ╭─parvus at core in ~/dev/fun/snn on master✘✘✘
@@ -66,7 +69,21 @@ cmake ..
 make
 ```
 
+To run the unit tests
+```bash
+cd ..
+build/unit_tests
+```
+
+To run the sample application
+```bash
+tar -xf mnist_set.tar.gz # decompress the included mnist dataset
+build/snn
+```
+
 ## Usage
+After compilation, the shared library `libsnnpp.dylib` (or `libsnnpp.so`) will be created in the build directory. Use your compiler to link the library to use it in another application.
+
 Starter code:
 ```c
 #include <iostream>
@@ -134,7 +151,7 @@ mnist_set/
 ```
 
 ### Save and load weights
-The weights from the trained network can be stored as a txt file containing the weight values of the network. 
+The weights from the trained network can be stored as a txt file containing the weight values of the network.
 
 ### Memory safety
 The program has been tested for leaks using `leaks` for MacOS
@@ -168,7 +185,7 @@ Process 9416: 0 leaks for 0 total leaked bytes.
 
 ## Architecture
 ### Neuron
-The neurons implement the leaky integrate and fire model which models each neuron's membrane potential. Information is transmitted from one neuron to another by synapses with learned weights. The voltage is accumulated within each neuron and if it hits a certain threshold, the neuron fires and its potential returns to its resting potential (-70mV). The membrane potential at any given time is calculated as the sum of all excitatory and inhibitory signals coming into the neuron. There's also a refractory period during which the neuron cannot fire again. The tau values in the parameter determines the steepness of the potential increase and decrease. 
+The neurons implement the leaky integrate and fire model which models each neuron's membrane potential. Information is transmitted from one neuron to another by synapses with learned weights. The voltage is accumulated within each neuron and if it hits a certain threshold, the neuron fires and its potential returns to its resting potential (-70mV). The membrane potential at any given time is calculated as the sum of all excitatory and inhibitory signals coming into the neuron. There's also a refractory period during which the neuron cannot fire again. The tau values in the parameter determines the steepness of the potential increase and decrease.
 
 
 ### Spike train and image encoding
@@ -181,18 +198,18 @@ The learning follows principles of Spike-Timing-Dependent Plasticity (STDP) whic
 ![alt text](https://github.com/ianmkim/snnpp/blob/master/docs/STDP.png?raw=true)
 
 
-The prediction and training is done by simulating the response of the output layer of the network for 200 time steps. 
+The prediction and training is done by simulating the response of the output layer of the network for 200 time steps.
 
 
 ### Lateral Inhibition
-The network also employs lateral inhibition as a strategy for unsupervized training. The neuron with the highest activity is selected as the winner then we suppress the membrane potentials of all other neurons in that layer. 
+The network also employs lateral inhibition as a strategy for unsupervized training. The neuron with the highest activity is selected as the winner then we suppress the membrane potentials of all other neurons in that layer.
 
 
 ## Optimizations
 ### Dot product
 There are multiple APIs that perform dot products. The regular templated `dot` function performs a loop through both vectors. It is a naive implementation
 
-The array based `dot` function does the same thing except with heap allocated arrays. This is marginally faster. 
+The array based `dot` function does the same thing except with heap allocated arrays. This is marginally faster.
 
 The vector based `dot_sse` function uses Intel SSE SIMD intrinsics are used (with support for ARM NEON intrinsics as well with the help of the `sse2neon.h` library). We use the `_m128` registers to multiply and sum multiple float values at the same time.
 
@@ -201,7 +218,7 @@ The array based `dot_sse` improves upon the vector based one by padding a heap a
 We saw dramatic reduction in time spent doing dot products in the benchmarks. ~22% computation time decrease was achieved using arrays and SIMD intrinsics as compared to array based dot products with regular for loops.
 
 ### Receptive field convolution
-The receptive field convolution was also optimized based on the `dot_sse` functions. Since the convolutions are just a bunch of dot products, we can utilize `dot_sse` by making array 1 the flattened version of the kernel and the other array a flattened version of the sliding window of the image. To accomplish this without inefficient branching if statements, we pad the original image by 4 rows and 4 columns. 
+The receptive field convolution was also optimized based on the `dot_sse` functions. Since the convolutions are just a bunch of dot products, we can utilize `dot_sse` by making array 1 the flattened version of the kernel and the other array a flattened version of the sliding window of the image. To accomplish this without inefficient branching if statements, we pad the original image by 4 rows and 4 columns.
 
 We saw more than ~40% reduction between the naive loop receptive field convolution and SIMD intrinsics optimized convolution.
 

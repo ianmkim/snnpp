@@ -6,9 +6,9 @@
 using namespace std;
 
 /*
- * threshold 
+ * threshold
  * determines the threshold for winning given a spike train
- * 
+ *
  * @param reference to the 2d spike train
  * @return the threshold in float
  */
