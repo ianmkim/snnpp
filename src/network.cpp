@@ -355,11 +355,21 @@ void Network::reconstruct_weights(float* weights, int num){
  * reconstruct the weights of all neurons in the final layer
  */
 void Network::reconstruct_all_weights(){
+    // loop over all the output neurons and reconstruct their weights as images
     for(int i = 0; i < this->out_dim; i++){
         this->reconstruct_weights(this->synapse[i], i+1);
     }
 }
 
+/*
+ * reconstruct_all_weights_for_animation
+ * reconstruct all the weights to make an animation during the training process
+ * so for every step in the training process, we save the image and we can use
+ * ffmpeg to reconstruct as an mp4/gif.
+ * 
+ * @param const string filepath
+ * @param int frame number to save the picture as
+ */
 void Network::reconstruct_all_weights_for_animation(const string filepath, int num){
     for(int n = 0; n < this->out_dim; n++) {
         auto weights = this->synapse[n];
